@@ -28,6 +28,9 @@ console.log(`length: ${collections.length}`);
 //indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
 console.log(collections.indexOf("Marcelia"));
 
+//if u want to start searching by using index of after a specific index
+console.log(`using second Parameter indexOf(): ${collections.indexOf("COW", 4)}`);
+
 //find() method returns the first element in the array that satisfies the provided testing function.
 console.log(collections.find((item) => item === "Marcelia"));
 
@@ -38,17 +41,17 @@ console.log(collections.filter((item) => typeof item === "string"));
 console.log(collections.sort());
 //2Dimentional Array in Js
 const names = [
-    ["Ahmed", "Sara", "Mohamed", "Mona", "Omar", "Nour", "Youssef", "Laila", "Khaled", "Hana"],
-    ["Ali", "Mariam", "Hassan", "Fatma", "Adam", "Salma", "Karim", "Rana", "Tarek", "Dina"],
-    ["Ibrahim", "Aya", "Mahmoud", "Reem", "Mostafa", "Huda", "Ziad", "Nada", "Amr", "Jana"],
-    ["Samir", "Heba", "Wael", "Rania", "Fadi", "Yara", "Sami", "Noha", "Bilal", "Malak"],
-    ["Adel", "Rasha", "Hamza", "Farah", "Nabil", "Sandy", "Fares", "Lina", "Ramy", "Shorouk"],
-    ["Ayman", "Basmalah", "Hany", "Doaa", "Sherif", "Maha", "Osama", "Sahar", "Bassem", "Riham"],
-    ["Walid", "Eman", "Maged", "Hanan", "Seif", "Rim", "Ashraf", "Manar", "Hatem", "Aya"],
-    ["Salah", "Nermin", "Kamel", "Wafaa", "Khalil", "Nadia", "Fouad", "Rabab", "Sameh", "Mervat"],
-    ["Ismail", "Zeina", "Saad", "Hala", "Ragab", "Lubna", "Yasin", "Samia", "Nasser", "Amal"],
-    ["Yehia", "Kenza", "Marwan", "Esraa", "Hossam", "Soma", "Anas", "Basma", "Gamal", "Khadija"]
-  ];
+  ["Ahmed", "Sara", "Mohamed", "Mona", "Omar", "Nour", "Youssef", "Laila", "Khaled", "Hana"],
+  ["Ali", "Mariam", "Hassan", "Fatma", "Adam", "Salma", "Karim", "Rana", "Tarek", "Dina"],
+  ["Ibrahim", "Aya", "Mahmoud", "Reem", "Mostafa", "Huda", "Ziad", "Nada", "Amr", "Jana"],
+  ["Samir", "Heba", "Wael", "Rania", "Fadi", "Yara", "Sami", "Noha", "Bilal", "Malak"],
+  ["Adel", "Rasha", "Hamza", "Farah", "Nabil", "Sandy", "Fares", "Lina", "Ramy", "Shorouk"],
+  ["Ayman", "Basmalah", "Hany", "Doaa", "Sherif", "Maha", "Osama", "Sahar", "Bassem", "Riham"],
+  ["Walid", "Eman", "Maged", "Hanan", "Seif", "Rim", "Ashraf", "Manar", "Hatem", "Aya"],
+  ["Salah", "Nermin", "Kamel", "Wafaa", "Khalil", "Nadia", "Fouad", "Rabab", "Sameh", "Mervat"],
+  ["Ismail", "Zeina", "Saad", "Hala", "Ragab", "Lubna", "Yasin", "Samia", "Nasser", "Amal"],
+  ["Yehia", "Kenza", "Marwan", "Esraa", "Hossam", "Soma", "Anas", "Basma", "Gamal", "Khadija"]
+];
 console.log(names[2][3]);
 
 /**
@@ -63,7 +66,7 @@ console.log(`first: ${first}`);
 console.log(`second: ${second}`);
 console.log(`last: ${last}`);
 let colors = ['green', 'blue', 'white'];
-let [c1,,c3] = colors;
+let [c1, , c3] = colors;
 console.log(`c1: ${c1}`);
 console.log(`c3: ${c3}`);
 
@@ -72,7 +75,7 @@ console.log(`c3: ${c3}`);
  *  It allows you to capture the remaining elements of an array that haven’t been destructured into a new array.
  */
 let fruitsArray = ["apple", "banana", "orange", "mango", "kiwi"];
-let [f1, f2,...rest] = fruitsArray;
+let [f1, f2, ...rest] = fruitsArray;
 console.log(`f1: ${f1}`);
 console.log(`f2: ${f2}`);
 console.log(`rest of fruits array: ${rest}`);
@@ -117,3 +120,34 @@ console.log(`reversed charArray: ${charArr}`);
  */
 let joinedReversedAray = charArr.join("");
 console.log(`reversed str: ${joinedReversedAray}`);
+
+{
+  //Splice method
+  /**
+   * The splice() method in JavaScript is a powerful way for modifying arrays. 
+   * It allows you to add or remove elements from any position in an array, 
+   * including the middle. The return value for the splice() method will be an array of the items removed from the array. 
+   * If nothing was removed, then an empty array will be returned.
+  */
+  //It is important to note that this method will mutate the original array,
+  //modifying it in place rather than creating a new array. 
+  //array.splice(startIndex, itemsToRemove, item1, item2)
+  //startIndex specifies the index at which to begin modifying the array, 
+  //itemsToRemove is an optional parameter indicating how many elements to remove. 
+  //itemsToRemove is omitted, splice() will remove all elements from startIndex to the end of the array. 
+  let fruits = ["apple", "banana", "orange", "mango", "kiwi"];
+  let removed = fruits.splice(0, fruits.length);
+  removed.forEach(element => {
+    console.log(`Spliced Elements ${element}`);
+  });
+
+  let colredNotSpliced = ["red", "green", "blue"];
+  colredNotSpliced.splice(1, 0, "purple", "blue");
+  console.log(colredNotSpliced); // ["red", "yellow", "purple", "green", "blue"]
+
+  //You can also use splice() to clear an array by removing all elements:
+  let array = [1, 2, 3, 4, 5];
+  array.splice(0);
+  console.log(array);
+
+}
