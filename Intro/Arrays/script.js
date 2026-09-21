@@ -150,4 +150,60 @@ console.log(`reversed str: ${joinedReversedAray}`);
   array.splice(0);
   console.log(array);
 
+  //The includes() method is particularly useful when you need to quickly
+  //verify the presence of an element in an array without needing to know its exact position.
+  // Let's start with an example of how to use the includes()
+  {
+    //Include method is Case Sensetive too
+    let fruits = ["apple", "banana", "orange", "mango"];
+    console.log(fruits.includes("banana")); // true;
+    console.log(fruits.includes("Banana")); // true;
+    console.log(fruits.includes("bale")); //false;
+    console.log(fruits.includes("grape"));  // false;
+  }
+
+  /**
+   * The includes() method can also accept an optional second parameter that specifies the position in the array 
+   * to start the search. This is useful if you want to check for an element's presence in a specific part of the array. 
+  */
+  let numbers = [10, 20, 30, 40, 50, 30, 60];
+  console.log(numbers.includes(50, 5)); // false
+  console.log(numbers.includes(30, 4)); // true
+
+  // includes() uses the strict equality comparison (===) no type coersion
+  let mixedArray = [1, "2", 3, "4", 5];
+  console.log(mixedArray.includes(2));  // false
+  console.log(mixedArray.includes("2")); // true
+
+}
+
+//Shallow array Cocepts
+/**
+ * A shallow copy of an array is a new array that has the same items as the original. 
+ * If the array only contains primitive values like numbers or strings, the new array is completely separate. 
+ * But if the array contains other arrays inside it, both the original and the copy have references to the same inner arrays. 
+ * This means that if you change something inside a shared inner array, you will see that change in both arrays.
+*/
+{
+  //Shallow array bu concat method
+  const originalArray =  [1, 2, 3];
+  const shallowArray = [].concat(originalArray);
+  console.log(shallowArray); // [1, 2, 3]
+  console.log(shallowArray === originalArray); // false
+
+  //shallow Array by slice method
+  const newShallowArray = originalArray.slice();
+  console.log(shallowArray); // [1, 2, 3]
+  console.log(shallowArray === originalArray); // false
+
+  //The is another method which is ... "spread operator" method
+  const copyArray = [...originalArray];
+  console.log(copyArray); // [1, 2, 3]
+  console.log(copyArray === originalArray); // false
+  /**
+   *It's important to note that all these methods create new array objects,
+   * which means you can modify the copy without affecting the original array.
+  */
+ copyArray.unshift(45);
+ console.log(copyArray);
 }
