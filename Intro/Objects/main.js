@@ -160,3 +160,17 @@
     console.log(numObject.valueOf("Number"));
     console.log(typeof numObject);
 }
+
+//What Is Object Destructuring, and How Does It Work?
+
+/*
+ * Object destructuring is a powerful feature in JavaScript that allows you to: 
+ * extract values from objects and assign them to variables in a more concise and readable way.
+*/
+
+{
+    const person = { name: "Alice", age: 30, city: "New York" };
+    const {name, ...rest} = person;
+    console.log(`name: ${name}`);
+    console.log(`rest[age, city]:${rest.age},  ${rest.city}`);
+}
